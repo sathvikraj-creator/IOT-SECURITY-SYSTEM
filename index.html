@@ -1,0 +1,51 @@
+#include <LiquidCrystal.h>
+
+// LCD: RS, E, D4, D5, D6, D7
+LiquidCrystal lcd(8, 9, 10, 11, 12, 13);
+
+int pirPin = 2;
+int buzzerPin = 6;
+int buttonPin = 7;
+int ledPin = 5;  // NEW: LED pin
+
+void setup() {
+  pinMode(pirPin, INPUT);
+  pinMode(buzzerPin, OUTPUT);
+  pinMode(buttonPin, INPUT_PULLUP);
+  pinMode(ledPin, OUTPUT); // NEW: Set LED as output
+
+  lcd.begin(16, 2);
+  lcd.print("System Ready");
+  delay(2000);
+  lcd.clear();
+}
+
+void loop() {
+  int motionDetected = digitalRead(pirPin);
+  int buttonPressed = digitalRead(buttonPin);
+
+  if (motionDetected == HIGH) {
+    digitalWrite(buzzerPin, HIGH);
+    digitalWrite(ledPin, HIGH); // NEW: Turn LED ON
+    lcd.clear();
+    lcd.setCursor(0, 0);
+    lcd.print("Motion Detected!");
+    lcd.setCursor(0, 1);
+    lcd.print("Sending alert...");
+  } else {
+    digitalWrite(buzzerPin, LOW);
+    digitalWrite(ledPin, LOW); // NEW: Turn LED OFF
+    lcd.clear();
+    lcd.setCursor(0, 0);
+    lcd.print("System Active");
+  }
+
+  if (buttonPressed == LOW) {
+    lcd.clear();
+    lcd.setCursor(0, 0);
+    lcd.print("Image Captured");
+    delay(1000);
+  }
+
+  delay(200);
+}

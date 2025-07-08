@@ -46,6 +46,10 @@ The setup() function configures all pin modes and the LCD display, and the loop(
 
 # OUTPUT
 
+When the push button is activated the LCD display shows that "Image captured" 
+
 <img width="1299" height="782" alt="Image" src="https://github.com/user-attachments/assets/97bc6bf7-b950-4ffd-9328-172d0534548f" />
+
+When PIR sensor detects motion , it triggers buzzer & led and LCD display shows that "Motion Detected! Sending alert..."
 
 <img width="1183" height="792" alt="Image" src="https://github.com/user-attachments/assets/ce6f6bf1-01a1-43b1-b045-f7889cba46eb" />
